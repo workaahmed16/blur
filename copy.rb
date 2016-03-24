@@ -16,16 +16,16 @@ class Image
 
 	def copy_array
 		new_array = Marshal.load(Marshal.dump(values))
-		p new_array
-	end
-
-	def check_copy(new_copy)
-		if values.equal?(new_copy)
-			puts "They are the same"
+		if values.equal?(new_array) 
+			puts "The objects are the same"
 		else
-			puts "They are different objects"
+			puts "This is a different object"
 		end
 	end
+
+	def check
+	end
+
 end
 
 
@@ -35,10 +35,8 @@ image = Image.new([
   [0, 0, 0, 0],
   [0, 0, 0, 0]
 ])
-shallow_copy = image
-image_copy = image.copy_array
-image.check_copy(image_copy)
-image.check_copy(shallow_copy)
+image.copy_array
+image.values.
 
 
 # ==	Checks if the value of two operands are equal or not, if yes then condition becomes true.
