@@ -46,3 +46,4 @@ image = Image.new([
 ])
 
 image.transformation
+image.output_image
