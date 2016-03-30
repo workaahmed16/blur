@@ -15,15 +15,34 @@ class Image
 	end
 
 	def copy_array
-		new_array = Marshal.load(Marshal.dump(values))
+		c = []
+
+		values.each do |row|
+			c << row.dup
+		end
+		return c
 	end
 
 	def check(copy)
-		if values.equal?(copy) 
-			puts "The objects are the same"
-		else
-			puts "This is a different object"
-		end
+	c = []
+
+	values.each do |row|
+   		copy.each do |row_two|
+			if row.equal?(row_two)
+				c << true
+			else
+				c << false
+			end
+    	end
+	end
+
+	if c.include?(true)
+		puts true
+	else
+		puts false
+	end
+
+
 	end
 
 end
@@ -35,8 +54,15 @@ image = Image.new([
   [0, 0, 0, 0],
   [0, 0, 0, 0]
 ])
-image.check(image.copy_array)
-image.check(image.values)
+
+copy = image.copy_array
+copy[0][0] = 1
+p copy
+
+image.output_image
+
+image.check(copy)
+
 
 
 
