@@ -23,26 +23,47 @@ class Image
 		return c
 	end
 
-	def check(copy)
+	def check_equal(copy)
+
 	c = []
 
-	values.each do |row|
-   		copy.each do |row_two|
-			if row.equal?(row_two)
+	values.each_with_index do |row, index|
+   		
+		if row.equal?(copy[index])    # Check same object
+			c << true
+		else
+			c << false
+		end
+	end
+
+	p c 
+
+	if c.include?(false)
+		puts false
+	else
+		puts true
+	end
+
+
+	end
+
+	def check_equivalent(copy)
+		c = []
+
+		values.each_with_index do |row, index|
+			if row == (copy[index])
 				c << true
 			else
 				c << false
 			end
-    	end
-	end
-
-	if c.include?(true)
-		puts true
-	else
-		puts false
-	end
+		end
 
 
+		if c.include?(false)
+			puts false
+		else
+			puts true
+		end
 	end
 
 end
@@ -55,13 +76,24 @@ image = Image.new([
   [0, 0, 0, 0]
 ])
 
-copy = image.copy_array
-copy[0][0] = 1
-p copy
+copy = Image.new([
+  [0, 0, 0, 0],
+  [0, 1, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]
+])
+
+
+image.check_equal(copy.values)   # ==> false
+image.check_equivalent(copy.values)  # ==> true
+#image.check(image.values)  # ==> true
+#image.check(image.values.dup)  # ==> true
 
 image.output_image
-
-image.check(copy)
+copy.values[0][0] = 1
+copy.output_image
+image.check_equal(copy.values)  # ==> false
+image.check_equivalent(copy.values) # ==> false
 
 
 
