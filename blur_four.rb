@@ -68,15 +68,15 @@ class Image
 
 	
 	def transformation
-		values.each_with_index do |row, index_one|
-			row.each_with_index do |col, index_two|
-				if row[index_two] == 1
-					copy = self.copy_array
-					copy.values[index_one][index_two-1] = 1
-					copy.values[index_one][index_two+1] = 1
-					copy.values[index_one+1][index_two] = 1
-					copy.values[index_one-1][index_two] = 1
-					p copy.output_image
+		values.each_with_index do |row, index_one|   #Iterate through first array with index
+			row.each_with_index do |col, index_two|  #iterate through each sub array with index
+				if row[index_two] == 1   #find out which index of the sub-array contains 1. 
+					copy = self.copy_array   #Get a copy for editing purposes. 
+					copy.values[index_one][index_two-1] = 1		#Edit copy array with the correct index locations
+					copy.values[index_one][index_two+1] = 1		#Edit copy array with the correct index locations
+					copy.values[index_one+1][index_two] = 1		#Edit copy array with the correct index locations
+					copy.values[index_one-1][index_two] = 1		#Edit copy array with the correct index locations
+					copy.output_image  #finally output everything.
 				end
 			end
 		end
