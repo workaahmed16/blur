@@ -20,7 +20,8 @@ class Image
 		values.each do |row|
 			c << row.dup
 		end
-		return c
+
+		copy = Image.new(c)
 	end
 
 	def check_equal(copy)
@@ -36,7 +37,6 @@ class Image
 		end
 	end
 
-	p c 
 
 	if c.include?(false)
 		puts false
@@ -58,7 +58,7 @@ class Image
 			end
 		end
 
-
+		
 		if c.include?(false)
 			puts false
 		else
@@ -66,8 +66,12 @@ class Image
 		end
 	end
 
-end
+	
+	def transformation
+		
+	end
 
+end
 
 image = Image.new([
   [0, 0, 0, 0],
@@ -83,21 +87,11 @@ copy = Image.new([
   [0, 0, 0, 0]
 ])
 
+#image.output_image
+#image.copy_array
+#image.check_equal(image.values)  # ==> true
+#image.check_equivalent(image.values) # ==> true
 
-image.check_equal(copy.values)   # ==> false
-image.check_equivalent(copy.values)  # ==> true
-
-image.output_image
-copy.values[0][0] = 1
-copy.output_image
-image.check_equal(copy.values)  # ==> false
-image.check_equivalent(copy.values) # ==> false
-
-
-
-
-# ==	Checks if the value of two operands are equal or not, if yes then condition becomes true.
-# =	Simple assignment operator, Assigns values from right side operands to left side operand
-#
-#Everything in Ruby is an object. Every Object has a reference number or object_id
-
+#image.check_equal(copy.values)  # ==> false
+#copy.values[0][0] = 1
+#image.check_equivalent(copy.values) # ==> false
