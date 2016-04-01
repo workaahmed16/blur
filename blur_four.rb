@@ -68,7 +68,18 @@ class Image
 
 	
 	def transformation
-		
+		values.each_with_index do |row, index_one|
+			row.each_with_index do |col, index_two|
+				if row[index_two] == 1
+					copy = self.copy_array
+					copy.values[index_one][index_two-1] = 1
+					copy.values[index_one][index_two+1] = 1
+					copy.values[index_one+1][index_two] = 1
+					copy.values[index_one-1][index_two] = 1
+					p copy.output_image
+				end
+			end
+		end
 	end
 
 end
@@ -95,3 +106,6 @@ copy = Image.new([
 #image.check_equal(copy.values)  # ==> false
 #copy.values[0][0] = 1
 #image.check_equivalent(copy.values) # ==> false
+
+
+image.transformation
