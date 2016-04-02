@@ -79,7 +79,7 @@ class Image
 						copy.values[index_one][index_two] = 1
 					end
 					if index_two >= (row.length-1)
-						p (row.length-1)
+						
 						copy.values[index_one][index_two] = 1		
 					else
 						copy.values[index_one][index_two+1] = 1
@@ -98,20 +98,38 @@ class Image
 				end
 			end
 		end
-		copy.output_image
+		return copy
+	end
+
+	def blur(distance)
+		
+		if distance == 1
+			image = Image.new(self.transformation.values)
+			image.output_image
+		elsif distance == 2
+			image = Image.new(self.transformation.values)
+			image.transformation.output_image
+		elsif distance == 3
+			image = Image.new(self.transformation.values)
+			image.transformation.transformation.output_image
+		else
+			puts "Invalid Input"
+		end
+			
 	end
 
 end
 
 image = Image.new([
-  [0, 0, 0, 1],
   [0, 0, 0, 0],
+  [0, 1, 0, 0],
   [0, 0, 0, 0],
-  [1, 0, 0, 0]
+  [0, 0, 0, 0]
 ])
 
 
 image.transformation
+image.blur(3)
 
 
 
